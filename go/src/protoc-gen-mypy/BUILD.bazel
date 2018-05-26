@@ -1,0 +1,22 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["main.go"],
+    importpath = "github.com/dropbox/mypy-protobuf/go/src/protoc-gen-mypy",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//go/src/proto/mypy:go_default_library",
+        "@com_github_gogo_protobuf//proto:go_default_library",
+        "@com_github_gogo_protobuf//protoc-gen-gogo/descriptor:go_default_library",
+        "@com_github_gogo_protobuf//protoc-gen-gogo/generator:go_default_library",
+        "@com_github_gogo_protobuf//protoc-gen-gogo/plugin:go_default_library",
+        "@com_github_gogo_protobuf//vanity/command:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "protoc-gen-mypy",
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
+)

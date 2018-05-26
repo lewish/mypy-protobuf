@@ -6,7 +6,7 @@ import (
 	"sort"
 	"strings"
 
-	"proto/mypy"
+	"github.com/dropbox/mypy-protobuf/go/src/proto/mypy"
 	"github.com/gogo/protobuf/proto"
 	"github.com/gogo/protobuf/protoc-gen-gogo/descriptor"
 	plugin "github.com/gogo/protobuf/protoc-gen-gogo/plugin"
@@ -17,7 +17,8 @@ import (
 // Note: This const is used to group imports between project and stdlib. Replace as appropriate.
 const project = "dropbox"
 
-const mypyPkg = "proto/mypy"
+// This is used in python to reference built in proto types.
+const mypyPkg = "google.protobuf.internal.containers"
 
 var (
 	reservedMethodNames = map[string]struct{}{
